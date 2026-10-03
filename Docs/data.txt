@@ -1,0 +1,10 @@
+Azure copilot coding agent traces 2026 
+Burst GPT kdd 2025 
+vs Alibaba 2026 traces ( to check for robusntess)
+
+
+One scope warning, plus a good follow-up idea
+
+The Copilot paper's central finding is that KV-cache reuse depends on session structure. In real LLM routers that means cache-affinity routing: keep a session on the replica holding its cache. Combined with a gray failure, that's an even stronger version of your thesis. A sticky router keeps sending a session to a slowly failing replica, and its logs almost never show what the other replicas would have done.
+
+But for ICPE, don't model the cache. Treat routing as cache-agnostic over aggregate traffic, and state cache affinity as a limitation and future work. It's an excellent follow-up paper, and it connects Paper 1 directly to agentic serving. Six weeks before the deadline is the wrong time to add it.

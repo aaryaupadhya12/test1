@@ -1,0 +1,7 @@
+https://arxiv.org/abs/2409.14557 -> Exploiting Exogenous Structure for Sample-Efficient Reinforcement Learning
+https://proceedings.mlr.press/v70/hanna17a.html -> Data-Efficient Policy Evaluation Through Behavior Policy Search
+https://arxiv.org/abs/2202.13234 -> Safe Exploration for Efficient Policy Evaluation and Comparison
+https://arxiv.org/abs/2003.05623 -> Off-policy Policy Evaluation For Sequential Decisions Under Unobserved Confounding
+https://proceedings.neurips.cc/paper_files/paper/2022/file/3bf80b34f731313b8292f4578e820c90-Paper-Conference.pdf -> Off-Policy Evaluation for Action-Dependent
+Non-Stationary Environments
+https://www.usenix.org/legacy/events/nsdi06/tech/full_papers/schroeder/schroeder.pdf -> open vs closed a causionary tale 

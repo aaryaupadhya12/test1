@@ -3,7 +3,7 @@ from typing import Optional
 
 
 
-VERSIONS = {"harness": "0.1.0", "env": "0.1.0", "grader": "0.1.0"}
+VERSIONS = {"harness": "0.1.0", "env": "0.1.0", "grader": "0.2.0"}
 
 @dataclass
 class TaskSpec:

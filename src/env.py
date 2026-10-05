@@ -23,6 +23,14 @@ class IncidentEnv:
         self.step_used = 0
         self.done = False
 
+        return (
+            "Alert: user-facing latency is elevated across the service.\n"
+            "You are the on-call engineer. Three zones (A, B, C) serve traffic.\n"
+            f"Goal: worst-zone p99 latency at or below {self.slo_ms:.0f} ms, "
+            f"moving at most {round(self.cost_budget * 100)}% of traffic.\n"
+            f"You have {self.max_steps} tool calls. Call submit() when the incident is resolved."
+        )
+
     def zone_latency(self,zone):
         load = self.split[zone] * self.arrivals
         cap = self.capacity[zone]
@@ -69,6 +77,8 @@ class IncidentEnv:
         return{"status": "submitted"}
     
     def grade(self):
+        submitted = self.done
+        
         metrics = {z: self.zone_latency(z) for z in self.ZONES}
         worst_p99 = max(m["p99_ms"] for m in metrics.values())
         overloaded = any(m["overloaded"] for m in metrics.values())
@@ -81,7 +91,9 @@ class IncidentEnv:
 
         raw = 0.6 * slo_ok + 0.3 * cost_ok + 0.1 * efficiency
 
-        reward = 0.0 if overloaded else raw
+        reward = 0.0 if (overloaded or not submitted) else raw
+
+
 
         signals = {
             "slo_ok": slo_ok, 
@@ -90,7 +102,8 @@ class IncidentEnv:
                "worst_p99_ms": worst_p99, 
                "cost": cost,
                "overloaded": overloaded, 
-               "raw_reward": raw
+               "raw_reward": raw,
+               "submmited" : submitted
         }
         
         return reward , signals
